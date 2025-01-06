@@ -1,20 +1,23 @@
 import joblib
 
+
 class EnsembleModel:
     def __init__(self, model_name, weight_path):
         """
         Initialize the ensemble model with its name and the path to the weight file.
-        
+
         :param model_name: Name of the model (str).
         :param weight_path: Path to the file containing the model weights (str).
         """
         self.model_name = model_name  # Store the model name for identification.
-        self.model = joblib.load(weight_path)  # Load the pre-trained model from the specified path.
+        self.model = joblib.load(
+            weight_path
+        )  # Load the pre-trained model from the specified path.
 
     def get_name(self):
         """
         Retrieve the name of the model.
-        
+
         :return: The name of the model (str).
         """
         return self.model_name
@@ -22,11 +25,12 @@ class EnsembleModel:
     def predict(self, X):
         """
         Predict the output based on the input data using the loaded model.
-        
+
         :param X: Input data (list or numpy array).
         :return: Predictions made by the model.
         """
         return self.model.predict(X)  # Use the model to make predictions.
+
 
 if __name__ == "__main__":
     # Create an instance of EnsembleModel.
@@ -36,6 +40,20 @@ if __name__ == "__main__":
     )
 
     # Define the input data for prediction.
+    """
+        Input details:
+            - List of outputs from raw model. datatype: float
+
+        Specific:
+         - Ban Nhung: ["COMS","GFS","MITSUISHI2011_D02","LING3_D02","LINKF_D02","LINBMJ_D02","ETAKF_D02","ETAG3_D02","ETABMJ_D02"]
+         - Ban Ve: ["COMS","GFS","MITSUISHI2011_D03","LINKF_D03","LINBMJ_D03","ETAKF_D03","ETAG3_D03","ETABMJ_D03"]
+         - Hua Na: ["COMS","GFS","MITSUISHI2011_D03","LINKF_D03","LINBMJ_D03","ETAKF_D03","ETAG3_D03","ETABMJ_D03"]
+         - Khanh Khe: ["COMS","GFS","MITSUISHI2011_D02","LING3_D02","LINKF_D02","LINBMJ_D02","ETAKF_D02","ETAG3_D02","ETABMJ_D02"]
+         - Muong Hum: ["WRF84H","COMS","GFS","MITSUISHI2011_D01","MITSUISHI2021"]
+         - Song Chay 3: ["WRF84H","COMS","GFS","MITSUISHI2011_D01","MITSUISHI2021"]
+         - Song Chung: ["WRF84H","COMS","GFS","MITSUISHI2011_D01","MITSUISHI2021"]
+         - Thac Xang: ["COMS","GFS","MITSUISHI2011_D02","LING3_D02","LINKF_D02","LINBMJ_D02","ETAKF_D02","ETAG3_D02","ETABMJ_D02"]
+    """
     inputs = [[0, 0.113, 0.222, 2.314, 2.812]]  # Example feature values.
 
     # Make predictions using the model.
